@@ -1,13 +1,11 @@
 language: python
+
 python:
   - "3.6"      # current default Python on Travis CI
 
-packages:
-aria2
-
 install:
   - pip install -r requirements.txt
-# command to run tests
+
 script:
   - cd face_detection/detection/sfd/ && aria2c https://www.adrianbulat.com/downloads/python-fan/s3fd-619a316812.pth && mv s3fd-619a316812.pth s3fd.pth
   - youtube-dl -f best -i -a Dataset/chem/test.txt -o "Dataset/chem/videos/%(id)s.%(ext)s" --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 1M"

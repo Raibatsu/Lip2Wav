@@ -4,7 +4,6 @@ python:
 
 packages:
 aria2
-numba==0.48
 
 install:
   - pip install -r requirements.txt
@@ -15,4 +14,4 @@ script:
   - youtube-dl -f best -i -a Dataset/chem/train.txt -o "Dataset/chem/videos/%(id)s.%(ext)s" --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 1M"
   - youtube-dl -f best -i -a Dataset/chem/val.txt -o "Dataset/chem/videos/%(id)s.%(ext)s" --external-downloader aria2c --external-downloader-args "-x 16 -s 16 -k 1M"
   - python preprocess.py --speaker_root Dataset/chem --speaker chem
-  -python complete_test_generate.py -d Dataset/chem -r Dataset/chem/test_results \
+  - python complete_test_generate.py -d Dataset/chem -r Dataset/chem/test_results \
